@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "raycasting"
+version = "0.1.0"
+description = "Raycasting implementation with Pygame"
+authors = ["satrya-spotrai <satrya@spotr.ai>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pygame = "^2.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
