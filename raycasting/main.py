@@ -1,8 +1,8 @@
 import sys
 import pygame as pg
 
-from map import Map
-from player import Player
+from raycasting.map import Map
+from raycasting.player import Player
 
 WIDTH, HEIGHT = 640, 480
 RESOLUTION = (WIDTH, HEIGHT)
