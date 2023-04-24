@@ -44,6 +44,8 @@ class Player:
             self.angle -= PLAYER_ROTATION * self.game.delta
         if keys[pg.K_RIGHT]:
             self.angle += PLAYER_ROTATION * self.game.delta
+
+        # limit angle to <= 360 degrees/2pi radians 
         self.angle %= 2 * math.pi
 
     def update(self):
