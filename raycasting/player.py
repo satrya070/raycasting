@@ -84,4 +84,5 @@ class Player:
 
     @property
     def map_position(self):
+        # position of the tile 
         return int(self.x), int(self.y)

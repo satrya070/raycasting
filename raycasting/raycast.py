@@ -13,7 +13,9 @@ class RayCasting:
 
         ray_angle = self.game.player.angle - HALF_FOV # 30deg
 
-        # shoot out a ray for every 
+        print(self.game.map.world_map)
+
+        # for every  ray shot 
         for ray in range(NUM_RAYS):
             sin_a = math.sin(ray_angle)
             cos_a = math.cos(ray_angle)
@@ -27,9 +29,10 @@ class RayCasting:
             delta_depth = dy / sin_a # -1 / sin(315) = 1.4 | howlong a diagonal unit compared to dy(1)
             dx = delta_depth * cos_a # 1.4 * 0.7 = 0.98
 
-            for i in range(MAX_DEPTH): # max dpeth tiles to check
+            # the amount of horizontal lines the ray travels
+            for i in range(MAX_DEPTH):
                 tile_horz = int(x_horz), int(y_horz) # 0.98, 1
-                if tile_horz in self.game.map.world_map: # ???
+                if tile_horz in self.game.map.world_map: # if hits wall
                     break
                 x_horz += dx # move 0.98
                 y_horz += dy # move 1
@@ -44,9 +47,10 @@ class RayCasting:
             delta_depth = dx / cos_a # how long a diagonal unit compared to dx(1) | 1 / cos(315) = 1.4
             dy = delta_depth * sin_a # howmuch y per x unit | 1.4 * -0.7 = -0.98
 
+            # the amount of vertical lines the ray travels
             for i in range(MAX_DEPTH):
-                tile_vert = int(x_vert), int(y_vert) # 1, -0.7
-                if tile_vert in self.game.map.world_map: # TODO if hits wall?
+                tile_vert = int(x_vert), int(y_vert) # 1, -0.7 | this is the first tile the ray hits on the vertical axis
+                if tile_vert in self.game.map.world_map: # if mapindex  out of bounds of map
                     break
                 x_vert += dx
                 y_vert += dy
