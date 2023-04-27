@@ -1,12 +1,10 @@
 import sys
 import pygame as pg
 
+from raycasting.settings import *
 from raycasting.map import Map
 from raycasting.player import Player
-
-WIDTH, HEIGHT = 640, 480
-RESOLUTION = (WIDTH, HEIGHT)
-FPS = 30
+from raycasting.raycast import RayCasting
 
 class Game:
     def __init__(self):
@@ -19,9 +17,11 @@ class Game:
     def new_game(self):
         self.map = Map(self)
         self.player = Player(self)
+        self.raycasting = RayCasting(self)
 
     def update(self):
         self.player.update()
+        self.raycasting.update()
         pg.display.flip()
         self.delta = self.clock.tick(FPS)
         pg.display.set_caption(f"{self.clock.get_fps():.2f}")

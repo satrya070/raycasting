@@ -1,11 +1,10 @@
 import pygame as pg
 import math
-#from main import WIDTH, HEIGHT
 
 PLAYER_POSITION = (0, 0)
 PLAYER_ANGLE = 0
 PLAYER_SPEED = 0.001
-PLAYER_ROTATION = 0.001
+PLAYER_ROTATION = 0.002
 
 WIDTH, HEIGHT = 640, 480
 
@@ -33,10 +32,12 @@ class Player:
         if keys[pg.K_a]:
             dx += speed_sin
             dy -= speed_cos
-            print(sin, cos, self.angle, self.x, self.y)
         if keys[pg.K_d]:
             dx -= speed_sin
             dy += speed_cos
+
+        # if pg.key.get_pressed():
+        #     print(dx, dy)
         
         self.check_wall_collision(dx, dy)
 
@@ -82,5 +83,5 @@ class Player:
         return self.x, self.y
 
     @property
-    def map_pos(self):
+    def map_position(self):
         return int(self.x), int(self.y)
