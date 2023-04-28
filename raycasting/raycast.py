@@ -13,8 +13,6 @@ class RayCasting:
 
         ray_angle = self.game.player.angle - HALF_FOV # 30deg
 
-        print(self.game.map.world_map)
-
         # for every  ray shot 
         for ray in range(NUM_RAYS):
             sin_a = math.sin(ray_angle)
@@ -62,11 +60,25 @@ class RayCasting:
             else:
                 depth = depth_horz
 
-            pg.draw.line(self.game.screen, 'yellow', (100 * px, 100 * py),
-                         (100 * px + 100 * depth * cos_a, 100 * py + 100 * depth * sin_a), 2)
+            # remove fish eye effect
+            depth *= math.cos(self.game.player.angle - ray_angle)
 
+            # show all ray lines
+            # pg.draw.line(self.game.screen, 'yellow', (100 * px, 100 * py),
+            #              (100 * px + 100 * depth * cos_a, 100 * py + 100 * depth * sin_a), 2)
 
+            # projection
+            projection_height = SCREEN_DIST / (depth + 0.0001) # avoid division by zero # 
+
+            # draw walls
             ray_angle += DELTA_ANGLE
+
+            # draw walls
+            color = [255 / (1 + depth ** 5 * 0.00002)] * 3
+            pg.draw.rect(self.game.screen,
+                         color,
+                         (ray * SCALE, HALF_HEIGHT - projection_height // 2, SCALE, projection_height)
+            )
 
     def update(self):
         self.ray_cast()

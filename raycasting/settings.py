@@ -1,11 +1,16 @@
 import math
 
 WIDTH, HEIGHT = 640, 480
+HALF_WIDTH = WIDTH // 2
+HALF_HEIGHT = HEIGHT // 2
 RESOLUTION = (WIDTH, HEIGHT)
 FPS = 30
 FOV = math.pi / 3  # 60 degrees
-HALF_FOV = FOV / 2
+HALF_FOV = FOV / 2 # 30 degrees
 NUM_RAYS = WIDTH // 2
 HALF_NUM_RAYS = NUM_RAYS // 2
 DELTA_ANGLE = FOV / NUM_RAYS
 MAX_DEPTH = 20
+
+SCREEN_DIST = HALF_WIDTH / math.tan(HALF_FOV) # 320 / tan(30) = 320 / 0.577 = 554.26 tan from half viewing plane
+SCALE = WIDTH // NUM_RAYS
