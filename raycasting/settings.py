@@ -3,7 +3,7 @@ import math
 WIDTH, HEIGHT = 640, 480
 HALF_WIDTH = WIDTH // 2
 HALF_HEIGHT = HEIGHT // 2
-RESOLUTION = (WIDTH, HEIGHT)
+RESOLUTION = (WIDTH * 2, HEIGHT)
 FPS = 30
 FOV = math.pi / 3  # 60 degrees
 HALF_FOV = FOV / 2 # 30 degrees

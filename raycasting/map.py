@@ -1,4 +1,5 @@
 import pygame as pg
+from raycasting.settings import *
 
 map = [
     [0, 0, 0, 0],
@@ -21,5 +22,5 @@ class Map:
                     self.world_map[(i, j)] = col
     
     def draw(self):
-        [pg.draw.rect(self.game.screen, "darkgray", (pos[0] * 100, pos[1] * 100, 100, 100), 2)
+        [pg.draw.rect(self.game.screen, "darkgray", (pos[0] * 100 + WIDTH, pos[1] * 100, 100, 100), 2)
          for pos in self.world_map]
