@@ -64,8 +64,8 @@ class RayCasting:
             depth *= math.cos(self.game.player.angle - ray_angle)
 
             # show all ray lines
-            # pg.draw.line(self.game.screen, 'yellow', (100 * px, 100 * py),
-            #              (100 * px + 100 * depth * cos_a, 100 * py + 100 * depth * sin_a), 2)
+            #pg.draw.line(self.game.screen, 'yellow', (100 * px + WIDTH, 100 * py),
+            #              (100 * px + WIDTH + 100 * depth * cos_a, 100 * py + 100 * depth * sin_a), 2)
 
             # projection
             projection_height = SCREEN_DIST / (depth + 0.0001) # avoid division by zero # 

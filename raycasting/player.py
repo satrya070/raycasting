@@ -4,7 +4,7 @@ import math
 PLAYER_POSITION = (0, 0)
 PLAYER_ANGLE = 0
 PLAYER_SPEED = 0.001
-PLAYER_ROTATION = 0.002
+PLAYER_ROTATION = 0.001
 
 WIDTH, HEIGHT = 640, 480
 
@@ -64,9 +64,9 @@ class Player:
         pg.draw.line(
             self.game.screen,
             "yellow",
-            (self.x * 100 + 500, self.y * 100),
+            (self.x * 100 + WIDTH, self.y * 100),
             (
-                self.x * 100 + WIDTH * math.cos(self.angle),
+                self.x * 100 + WIDTH + WIDTH * math.cos(self.angle),
                 self.y * 100 + WIDTH * math.sin(self.angle)
             ),
             2
