@@ -1,12 +1,8 @@
 import pygame as pg
 import math
 
-PLAYER_POSITION = (0, 0)
-PLAYER_ANGLE = 0
-PLAYER_SPEED = 0.001
-PLAYER_ROTATION = 0.002
+from raycasting.settings import *
 
-WIDTH, HEIGHT = 640, 480
 
 class Player:
     def __init__(self, game):
@@ -35,9 +31,6 @@ class Player:
         if keys[pg.K_d]:
             dx -= speed_sin
             dy += speed_cos
-
-        # if pg.key.get_pressed():
-        #     print(dx, dy)
         
         self.check_wall_collision(dx, dy)
 
@@ -46,7 +39,7 @@ class Player:
         if keys[pg.K_RIGHT]:
             self.angle += PLAYER_ROTATION * self.game.delta
 
-        # limit angle to <= 360 degrees/2pi radians 
+        # make sure angle stay within 360 degrees
         self.angle %= 2 * math.pi
 
     def update(self):
@@ -61,16 +54,17 @@ class Player:
             self.y += dy
 
     def draw(self):
-        pg.draw.line(
-            self.game.screen,
-            "yellow",
-            (self.x * 100, self.y * 100),
-            (
-                self.x * 100 + WIDTH * math.cos(self.angle),
-                self.y * 100 + WIDTH * math.sin(self.angle)
-            ),
-            2
-        )
+        # your drawing the map and player, you can turn this on to see every ray that's projected
+        # pg.draw.line(
+        #     self.game.screen,
+        #     "green",
+        #     (self.x * 100, self.y * 100),
+        #     (
+        #         self.x * 100 + WIDTH * math.cos(self.angle),
+        #         self.y * 100 + WIDTH * math.sin(self.angle)
+        #     ),
+        #     2
+        # )
 
         pg.draw.circle(
             self.game.screen,
@@ -84,5 +78,4 @@ class Player:
 
     @property
     def map_position(self):
-        # position of the tile 
         return int(self.x), int(self.y)

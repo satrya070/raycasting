@@ -28,8 +28,9 @@ class Game:
 
     def draw(self):
         self.screen.fill("black")
-        #self.map.draw()
-        #self.player.draw()
+        # turn these on to the raycasting on the map with the player
+        # self.map.draw()
+        # self.player.draw()
 
     def check_events(self):
         for event in pg.event.get():
